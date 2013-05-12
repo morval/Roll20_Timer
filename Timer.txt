@@ -123,10 +123,16 @@ var countTime = function(obj, argv) {
         timerGlobal.sI = setInterval(function() {
 			if (timerGlobal.direction === "up") {
 				elapsedTime = elapsedTime + 1;
+            if (timerGlobal.clockRotate === true) {
+                obj.set("rotation", trueRotation(obj.get("rotation"))+360/60);
+            }
 			}
 			else {
 				if (timerGlobal.direction ==="down") {
 				elapsedTime = elapsedTime - 1;
+            if (timerGlobal.clockRotate === true) {
+                obj.set("rotation", trueRotation(obj.get("rotation"))+360/60);
+            }
 				}
 			} 
              clockTime = getClock(elapsedTime);
