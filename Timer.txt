@@ -67,7 +67,7 @@ function trueRotation(rotation) {
   return rotation;
 }
 
-var countTime = function(obj, argv) {
+var countTime = function(obj, argv, who) {
     var timerTimeout = 0;
     var elapsedTime = 0;
     var totalSecondsRemaining = 0;
@@ -103,7 +103,7 @@ var countTime = function(obj, argv) {
 		if (timerGlobal.direction === "up") {
 			var clockTime = getClock(elapsedTime);
 		    if (timerGlobal.clockLogChat === true) {
-				sendChat("", "Counting up to "+cTime.hours+":"+cTime.minutes+":"+cTime.seconds);
+				sendChat(who, "Counting up to "+cTime.hours+":"+cTime.minutes+":"+cTime.seconds);
 			}
 		}
 		else {
@@ -111,7 +111,7 @@ var countTime = function(obj, argv) {
 				var clockTime = cTime;
 				elapsedTime = timerTimeout;
 		        if (timerGlobal.clockLogChat === true) {
-					sendChat("", "Counting down from "+cTime.hours+":"+cTime.minutes+":"+cTime.seconds);
+					sendChat(who, "Counting down from "+cTime.hours+":"+cTime.minutes+":"+cTime.seconds);
 				}
 			}
 		}
@@ -194,7 +194,7 @@ var countTime = function(obj, argv) {
             writeClock(obj, clockTime);
 			resetClockVisuals(obj);
             if (timerGlobal.clockLogChat === true) {
-                sendChat("", "Times Up!");
+                sendChat(who, "Times Up!");
             }
         },timerTimeout*1000);
         timerGlobal.clockOn = true;
@@ -211,13 +211,13 @@ function processTimerScript(argv, who) {
         case 'cu':
             if (timerGlobal.clockOn === false) {
                 timerGlobal.direction = "up";
-				countTime(obj, argv);
+				countTime(obj, argv, who);
             } 
             break;
         case 'cd':
             if (timerGlobal.clockOn === false) {
                 timerGlobal.direction = "down";
-				countTime(obj, argv);
+				countTime(obj, argv, who);
             }            
             break;
         case 'stop':
@@ -227,7 +227,7 @@ function processTimerScript(argv, who) {
                 clearInterval(timerGlobal.sI);
 				resetClockVisuals(obj);
                 if (timerGlobal.clockLogChat === true) {
-                    sendChat("", "Timer Stopped!");
+                    sendChat(who, "Timer Stopped!");
                 }
             }
             break;
@@ -238,7 +238,7 @@ function processTimerScript(argv, who) {
                 clearInterval(timerGlobal.sI);
 				resetClockVisuals(obj);
                 if (timerGlobal.clockLogChat === true) {
-                    sendChat("", "Timer Restarted!");
+                    sendChat(who, "Timer Restarted!");
                 }
                 timerGlobal.restarted = true;
                 countTime(obj,argv);
