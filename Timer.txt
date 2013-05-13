@@ -241,7 +241,7 @@ function processTimerScript(argv, who) {
                     sendChat(who, "Timer Restarted!");
                 }
                 timerGlobal.restarted = true;
-                countTime(obj,argv);
+                countTime(obj,argv, who);
             }
             break;
         case 'logchat':
