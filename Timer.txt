@@ -136,10 +136,7 @@ var countTime = function(obj, argv) {
 				}
 			} 
              clockTime = getClock(elapsedTime);
-            
-            if (timerGlobal.clockRotate === true) {
-                obj.set("rotation", trueRotation(obj.get("rotation"))+360/60);
-            }
+
             if (timerGlobal.clockStatusMarker === true) {
                 if (obj.get("status_redmarker") === false)
                 {
